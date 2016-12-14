@@ -49,7 +49,7 @@ def getCommitInfo( repo, revision ):
 		'revision' : revision,
 		'url' : '',			 #REPO_BASE_URL + repo + '?=' + revision,
 		'author' : author,
-		'log' : comment + "\n" + files,
+		'log' : "Repo: "+ getRepoName(repo) +"\n" + comment + files,
 	}
 
 	return payload
