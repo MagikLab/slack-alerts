@@ -41,15 +41,19 @@ def getCommitInfo( repo, revision ):
 	author = runLook('author', repo, '-r', revision)
 	files = runLook('changed', repo, '-r', revision)
 	fileArr = files.split("\n");
-	if len(fileArr) > 7:
-	   filesWillShow = fileArr[0:7]
-	   files = "\n".join(filesWillShow)
-	   files = files + "\nAnd {} more files ...".format(len(fileArr) - 7)
+	
+	maxRow = 4;
+	
+	#if len(fileArr) > maxRow:
+	   #filesWillShow = fileArr[0:maxRow]
+	   #files = "\n".join(filesWillShow)
+	   #files = files + "\nAnd {} more files ...".format(len(fileArr) - maxRow)
+
 	payload = {
 		'revision' : revision,
-		'url' : '',			 #REPO_BASE_URL + repo + '?=' + revision,
+	#	'url' : '',			 #REPO_BASE_URL + repo + '?=' + revision,
 		'author' : author,
-		'log' : "Repo: "+ getRepoName(repo) +"\n" + comment + files,
+		'log' : getRepoName(repo)  + " : " + str(len(fileArr)) + " files." + " \n " + comment,
 	}
 
 	return payload
